@@ -1,4 +1,4 @@
-import { createAsyncAction } from "typesafe-actions";
+import { createAsyncAction, createAction } from "typesafe-actions";
 import {
   User,
   Survey,
@@ -45,6 +45,11 @@ const RESPONSED_SURVEY_GET = createRequestTypes('RESPONSED_SURVEY_GET');
 const RESPONSES_BY_SURVEY_ID_GET = createRequestTypes('RESPONSES_BY_SURVEY_ID_GET');
 const RESPONSE_ANSWERS_GET = createRequestTypes('RESPONSE_ANSWERS_GET');
 
+export interface KeyValue {
+  key: string;
+  value: any;
+}
+
 // USER
 export const fetchGetUserAction = createAsyncAction(
   USER_GET[REQUEST],
@@ -72,6 +77,11 @@ export const fetchPostSurveyFullAction = createAsyncAction(
   SURVEY_FULL_POST[SUCCESS],
   SURVEY_FULL_POST[FAILURE],
 )<FullSurveyRequest, undefined, Error>();
+
+export const createSurveyFullAction = {
+  clear: createAction('CREATE_FULL_SURVEY_CLEAR')(),
+  update: createAction('CREATE_FULL_SURVEY_UPDATE')<KeyValue>(),
+};
 
 export const fetchGetSurveyFullAction = createAsyncAction(
   SURVEY_FULL_GET[REQUEST],
@@ -103,11 +113,21 @@ export const fetchPostSurveyAction = createAsyncAction(
   SURVEY_POST[FAILURE],
 )<TitleRequest, undefined, Error>();
 
+export const createSurveyAction = {
+  clear: createAction('CREATE_SURVEY_CLEAR')(),
+  update: createAction('CREATE_SURVEY_UPDATE')<KeyValue>(),
+};
+
 export const fetchUpdateSurveyAction = createAsyncAction(
   SURVEY_UPDATE[REQUEST],
   SURVEY_UPDATE[SUCCESS],
   SURVEY_UPDATE[FAILURE],
-)<Survey, Survey, Error>();
+)<Survey, undefined, Error>();
+
+export const updateSurveyAction = {
+  clear: createAction('UPDATE_SURVEY_CLEAR')(),
+  update: createAction('UPDATE_SURVEY_UPDATE')<KeyValue>(),
+};
 
 // RESPONSE
 export const fetchGetResponsesBySurveyIdAction = createAsyncAction(
@@ -132,4 +152,9 @@ export const fetchPostResponseAction = createAsyncAction(
   RESPONSE_POST[REQUEST],
   RESPONSE_POST[SUCCESS],
   RESPONSE_POST[FAILURE],
-)<{ surveyId: number, payload: ReponseAnswerRequest[] }, undefined, Error>();
+)<{ surveyId: number, responseAnsList: ReponseAnswerRequest[] }, undefined, Error>();
+
+export const createResponseAction = {
+  clear: createAction('CREATE_RESPONSE_CLEAR')(),
+  update: createAction('CREATE_RESPONSE_UPDATE')<KeyValue>(),
+};

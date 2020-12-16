@@ -2,21 +2,21 @@ export interface User {
   id: number;
   name: string;
   email: string;
-  password: string;
+  password?: string;
   full_name: string;
-  created: Date;
+  created?: Date;
 }
 
 export interface Survey {
   id: number;
   title: string;
-  created: Date;
+  created?: Date;
   user_id: number;
 }
 
 export interface Response {
   id: number;
-  created: Date;
+  created?: Date;
   survey_id: number;
   user_id: number;
 }
@@ -31,14 +31,14 @@ export interface ResponseAnswer {
 export interface Question {
   id: number;
   title: string;
-  created: Date;
+  created?: Date;
   survey_id: number;
 }
 
 export interface Option {
   id: number;
   title: string;
-  created: Date;
+  created?: Date;
   question_id: number;
 }
 
