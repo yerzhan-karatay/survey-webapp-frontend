@@ -8,13 +8,13 @@ interface MatchParams {
   page_function: string;
 }
 
-interface PageWrapperProps extends RouteComponentProps<MatchParams> {
+interface SurveyWrapperProps extends RouteComponentProps<MatchParams> {
 }
-const PageWrapper: React.FC<PageWrapperProps> = ({ match }) => {
+const SurveyWrapper: React.FC<SurveyWrapperProps> = ({ match }) => {
   const dispatch = useDispatch();
   useEffect(() => {
   }, [dispatch]);
-
+  // new, list, :surveyId/details, :surveyId/edit, :surveyId/response, :surveyId/response/:responseId -detail
   const page_type = match.params.page_type;
   let content;
   switch (page_type) {
@@ -29,11 +29,11 @@ const PageWrapper: React.FC<PageWrapperProps> = ({ match }) => {
   return (
     <main className="wrapper">
       <section className="wrapper__header">
-        header
+        SurveyWrapper header
       </section>
       <section className="wrapper__content">{content}</section>
     </main>
   );
 };
 
-export default withRouter(PageWrapper);
+export default withRouter(SurveyWrapper);
