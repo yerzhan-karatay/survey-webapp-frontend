@@ -9,7 +9,7 @@ import {
   ReponseAnswerRequest,
   ReponseAnswerResponse,
   Token,
-  TitleRequest
+  TitleRequest,
 } from "../models";
 
 const REQUEST = "REQUEST";
@@ -132,4 +132,4 @@ export const fetchPostResponseAction = createAsyncAction(
   RESPONSE_POST[REQUEST],
   RESPONSE_POST[SUCCESS],
   RESPONSE_POST[FAILURE],
-)<{ responseId: number, payload: ReponseAnswerRequest }, undefined, Error>();
+)<{ surveyId: number, payload: ReponseAnswerRequest[] }, undefined, Error>();
