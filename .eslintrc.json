@@ -1,0 +1,26 @@
+{
+  "extends": "react-app",
+  "globals": {
+    "window": true
+  },
+  "rules": {
+    "brace-style": ["error", "1tbs", { "allowSingleLine": true }],
+    "comma-dangle": ["error", {
+      "arrays": "always-multiline",
+      "objects": "always-multiline",
+      "imports": "always-multiline",
+      "exports": "always-multiline",
+      "functions": "always-multiline"
+    }],
+    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "@typescript-eslint/indent": ["error", 2],
+    "max-len": ["error", { "code": 120 }],
+    "keyword-spacing": ["error"],
+    "key-spacing": ["error"],
+    "space-before-function-paren": ["error", "never"],
+    "space-infix-ops": ["error"],
+    "space-in-parens": ["error", "never"],
+    "object-curly-spacing": ["error", "always"],
+    "semi": ["error", "always"]
+  }
+}
