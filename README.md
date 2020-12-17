@@ -1,4 +1,29 @@
-# Getting Started with Create React App
+# _Survey frontend service on React JS TS_
+
+This is part of Survey web application. To run the whole service, you need [**survey-webapp-frontend**](https://github.com/yerzhan-karatay/survey-webapp-frontend) and [**survey-webapp-backend**](https://github.com/yerzhan-karatay/survey-webapp-backend) to be run on your local machine together.
+
+
+### 1. Install [Yarn](https://classic.yarnpkg.com/en/docs/install/) and [NPM](https://www.npmjs.com/get-npm)
+I use `yarn` commands in this project, but you can do all commands using `npm` as well.
+
+### 2. Set up local environment
+Clone [**survey-webapp-backend**](https://github.com/yerzhan-karatay/survey-webapp-backend) project to your local.
+```
+git clone git@github.com:yerzhan-karatay/survey-webapp-backend.git
+cd survey-webapp-backend
+```
+
+### 3. Install all packages
+```
+yarn install
+```
+
+### 4. Run the project locally
+```
+yarn start
+```
+
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
