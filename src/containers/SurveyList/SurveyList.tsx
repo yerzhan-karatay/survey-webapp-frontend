@@ -51,6 +51,12 @@ const SurveyList: React.FC = () => {
                   <th>{survey.created}</th>
                   <th>
                     <button
+                      className="btn btn--default bg-blue-500"
+                      onClick={() => history.push(`/survey/${survey.id}/edit`)}
+                    >
+                      Edit
+                    </button>
+                    <button
                       className="btn btn--default bg-red-500"
                       disabled={isFetching}
                       onClick={() => deleteSurvey(survey.id)}

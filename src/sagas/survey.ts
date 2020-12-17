@@ -82,6 +82,7 @@ export function* requestUpdateSurvey(
     const survey = action.payload;
     yield call(surveyServices.updateSurvey, survey.id, survey);
     yield put(fetchUpdateSurveyAction.success());
+    history.push(`/survey/${survey.id}/detail`);
   } catch (e) {
     yield put(fetchUpdateSurveyAction.failure(e));
   }
