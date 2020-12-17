@@ -1,16 +1,17 @@
 import { getType, PayloadAction } from 'typesafe-actions';
-import { fetchPostLoginAction } from '../../actions';
+import { fetchPostLoginAction, createPostLoginAction } from '../../actions';
 import { AuthCredentials } from '../../models';
 import conf from '../../config';
-
 export interface UserLoginState extends AuthCredentials {
   isFetching: boolean;
+  error: string;
 }
 
 const initialState: UserLoginState = {
-  isFetching: true,
+  isFetching: false,
   email: "",
   password: "",
+  error: "",
 };
 
 export function stateUserLogin(
@@ -18,6 +19,19 @@ export function stateUserLogin(
   action: PayloadAction<string, any>,
 ) {
   switch (action.type) {
+    case getType(createPostLoginAction.clear):
+      return {
+        ...initialState,
+      };
+
+    case getType(createPostLoginAction.update):
+      const updateObj: { [index:string]: any } = {};
+      updateObj[action.payload.key] = action.payload.value;
+      return {
+        ...state,
+        ...updateObj,
+      };
+    
     case getType(fetchPostLoginAction.request):
       return {
         ...state,
@@ -34,6 +48,7 @@ export function stateUserLogin(
     case getType(fetchPostLoginAction.failure):
       return {
         ...state,
+        error: action.payload.response.data.error,
         isFetching: false,
       };
 

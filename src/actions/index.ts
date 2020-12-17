@@ -64,12 +64,22 @@ export const fetchPostLoginAction = createAsyncAction(
   LOGIN_POST[FAILURE],
 )<AuthCredentials, Token, Error>();
 
+export const createPostLoginAction = {
+  clear: createAction('CREATE_LOGIN_POST_CLEAR')(),
+  update: createAction('CREATE_LOGIN_POST_UPDATE')<KeyValue>(),
+};
+
 // SIGNUP
 export const fetchPostSignupAction = createAsyncAction(
   SIGNUP_POST[REQUEST],
   SIGNUP_POST[SUCCESS],
   SIGNUP_POST[FAILURE],
-)<AuthCredentials, Token, Error>();
+)<{ email: string, full_name: string, password: string }, Token, Error>();
+
+export const createPostSignupAction = {
+  clear: createAction('CREATE_SIGNUP_POST_CLEAR')(),
+  update: createAction('CREATE_SIGNUP_POST_UPDATE')<KeyValue>(),
+};
 
 // SURVEY
 export const fetchPostSurveyFullAction = createAsyncAction(

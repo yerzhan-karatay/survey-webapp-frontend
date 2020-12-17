@@ -7,7 +7,7 @@ export interface UserState extends User {
 }
 
 const initialState: UserState = {
-  isFetching: true,
+  isFetching: false,
   id: 0,
   name: "",
   email: "",
@@ -35,6 +35,7 @@ export function stateUser(
       };
 
     case getType(fetchGetUserAction.failure):
+      console.log(action);
       return {
         ...state,
         isFetching: false,

@@ -6,7 +6,7 @@ export interface DeleteSurveyState {
 }
 
 const initialState: DeleteSurveyState = {
-  isFetching: true,
+  isFetching: false,
 };
 
 export function deleteSurvey(
