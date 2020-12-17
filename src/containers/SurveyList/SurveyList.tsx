@@ -43,11 +43,11 @@ const SurveyList: React.FC = () => {
           <tbody>
             {surveys.map(survey => {
               return (
-                <tr
-                  key={survey.id}
-                  onClick={() => history.push(`/survey/${survey.id}/detail`)}
-                >
-                  <th>{survey.title}</th>
+                <tr key={survey.id}>
+                  <th
+                    className="cursor-pointer"
+                    onClick={() => history.push(`/survey/${survey.id}/detail`)}
+                  >{survey.title}</th>
                   <th>{survey.created}</th>
                   <th>
                     <button

@@ -4,6 +4,7 @@ import { stateUser, UserState } from './user/stateUser';
 import { stateUserLogin, UserLoginState } from './user/stateUserLogin';
 import { stateUserSignup, UserSignupState } from './user/stateUserSignup';
 
+import { createSurveyFull, CreateSurveyFullState } from './survey/statePostFullSurvey';
 import { createSurvey, CreateSurveyState } from './survey/stateCreateSurvey';
 import { deleteSurvey, DeleteSurveyState } from './survey/stateDeleteSurvey';
 import { getSurveyFull, GetSurveyFullState } from './survey/stateGetFullSurvey';
@@ -21,6 +22,7 @@ export interface State {
   stateUserLogin: UserLoginState;
   stateUserSignup: UserSignupState;
 
+  createSurveyFull: CreateSurveyFullState;
   createSurvey: CreateSurveyState;
   deleteSurvey: DeleteSurveyState;
   getSurveyFull: GetSurveyFullState;
@@ -39,6 +41,7 @@ const rootReducer = combineReducers({
   stateUserLogin,
   stateUserSignup,
 
+  createSurveyFull,
   createSurvey,
   deleteSurvey,
   getSurveyFull,

@@ -4,12 +4,19 @@ import { FullSurveyRequest } from '../../models';
 
 export interface CreateSurveyFullState extends FullSurveyRequest {
   isFetching: boolean;
+  error: string;
 }
 
 const initialState: CreateSurveyFullState = {
   isFetching: false,
   title: "",
-  questions: [],
+  error: "",
+  questions: [
+    {
+      title: '',
+      options: ['', '', ''],
+    },
+  ],
 };
 
 export function createSurveyFull(

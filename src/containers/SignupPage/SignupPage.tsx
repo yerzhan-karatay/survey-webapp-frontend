@@ -47,6 +47,7 @@ function SignupPage() {
           placeholder="email@email.com"
           type="email"
           name="email"
+          value={email}
         />
         <InputGroup
           label="Enter your full name"
@@ -55,6 +56,7 @@ function SignupPage() {
           placeholder="Yerzhan Clark"
           type="text"
           name="full_name"
+          value={full_name}
         />
         <InputGroup
           label="Enter your password"
@@ -63,6 +65,7 @@ function SignupPage() {
           placeholder="Your password"
           type="password"
           name="password"
+          value={password}
         />
       </Form>
       <div className="signup-page__footer">

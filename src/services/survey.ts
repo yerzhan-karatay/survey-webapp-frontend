@@ -30,5 +30,9 @@ export async function updateSurvey(surveyId: number, payload: TitleRequest) {
 }
 
 export async function deleteSurvey(surveyId: number) {
-  await axios.delete(`${AppConfig.API_URL}/surveys/${surveyId}`);
+  await axios.delete(`${AppConfig.API_URL}/surveys/${surveyId}`,
+    {
+      method: 'DELETE',
+    },
+  );
 }

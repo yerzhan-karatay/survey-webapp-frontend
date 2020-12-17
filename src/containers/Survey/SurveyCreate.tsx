@@ -1,75 +1,153 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { State } from '../../reducers';
-import { fetchPostSignupAction, createPostSignupAction } from '../../actions';
+import { fetchPostSurveyFullAction, createSurveyFullAction } from '../../actions';
 import { Form, InputGroup } from '../../components/Form';
-import history from '../../history';
-
-function SignupPage() {
-  const { email, password, full_name, isFetching, error } = useSelector((state: State) => state.stateUserSignup);
+import { QuestionRequest } from '../../models';
+function SurveyCreate() {
+  const { title, questions, isFetching, error } = useSelector((state: State) => state.createSurveyFull);
+  const sampleQuesOpt = {
+    title: '',
+    options: ['', '', ''],
+  };
   const dispatch = useDispatch();
 
   useEffect(() => {
     return () => {
-      dispatch(createPostSignupAction.clear());
+      dispatch(createSurveyFullAction.clear());
     };
   }, [dispatch]);
 
-  function handleUpdate(key: string, value: string) {
-    dispatch(createPostSignupAction.update({ key, value }));
+  function handleUpdate(key: string, value: string | QuestionRequest[]) {
+    dispatch(createSurveyFullAction.update({ key, value }));
   }
 
   function handleSubmit() {
     // TODO: move verification process to saga
-    if (!email || !password || !full_name) {
+    if (!title || questions.length === 0) {
       handleUpdate('error', 'Please fill out all required fields');
     } else {
-      dispatch(fetchPostSignupAction.request({ email, full_name, password }));
+      // TODO: add validation for empty question or option before submit
+      dispatch(fetchPostSurveyFullAction.request({ title, questions }));
     }
   }
 
   return (
-    <div className="signup-page">
-      <div className="signup-page__greeting">
-        Thanks for joining us! Please enter your email and password below.
+    <div className="survey-block">
+      <div className="survey-block__greeting mt-10">
+        <span className="text-xl font-bold">Create survey page
+        </span> - add survey title and at least 1 question with options for creating a new Survey.
       </div>
       <Form
         isFetching={isFetching}
         errorMessage={error}
         onSubmit={() => handleSubmit()}
-        submitLabel="Signup"
-        className="signup-page__form"
+        submitLabel="Create Survey"
+        className="my-10"
       >
         <InputGroup
-          label="Enter your email"
+          label="Enter survey title"
           isRequired={true}
-          onChange={(val: string) => handleUpdate('email', val)}
-          placeholder="email@email.com"
-          type="email"
-          name="email"
-        />
-        <InputGroup
-          label="Enter your full name"
-          isRequired={true}
-          onChange={(val: string) => handleUpdate('full_name', val)}
-          placeholder="Yerzhan Clark"
+          onChange={(val: string) => handleUpdate('title', val)}
+          placeholder="Enter survey title"
           type="text"
-          name="full_name"
+          name="title"
+          value={title}
         />
-        <InputGroup
-          label="Enter your password"
-          isRequired={true}
-          onChange={(val: string) => handleUpdate('password', val)}
-          placeholder="Your password"
-          type="password"
-          name="password"
-        />
+        <button
+          className="btn bg-green-300 mb-5"
+          onClick={() => {
+            let temp = questions;
+            temp.push(sampleQuesOpt);
+            handleUpdate('questions', temp);
+          }}
+        >
+          Add question with options block
+        </button>
+
+        {
+          questions.map((question, index) => {
+            return (
+              <div key={`q-block-${index}`} className="survey-block__form__question-group">
+                <div className="flex items-center mb-5">
+                  <InputGroup
+                    className="mr-auto w-full pr-10"
+                    inputClassName="w-full mr-10"
+                    label={`Enter question #${index + 1}`}
+                    isRequired
+                    onChange={(val: string) => {
+                      let temp = questions;
+                      temp[index].title = val;
+                      handleUpdate('questions', temp);
+                    }}
+                    placeholder="Question title"
+                    type="text"
+                    name={`q-${index}`}
+                    value={question.title}
+                  />
+                  <button 
+                    disabled={questions.length === 1}
+                    className={`${questions.length === 1 && 'cursor-not-allowed'} btn bg-red-300 h-10`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      let temp = questions;
+                      temp.splice(index, 1);
+                      handleUpdate('questions', temp);
+                    }}
+                  >
+                    Delete
+                  </button>
+                </div>
+                <div>
+                  {question.options.map((option, opIndex) => {
+                    return (
+                      <div key={`o-block-${index}-${opIndex}`} className="grid gap-4 grid-cols-10 mb-5">
+                        <input
+                          required
+                          className="common-form__group__input col-span-8"
+                          type="text"
+                          placeholder="Option title"
+                          value={option}
+                          onChange={(e) => {
+                            let temp = questions;
+                            temp[index].options[opIndex] = e.target.value;
+                            handleUpdate('questions', temp);
+                          }}
+                        />
+                        <button
+                          className="btn bg-green-300"
+                          onClick={() => {
+                            let temp = questions;
+                            temp[index].options.push('');
+                            handleUpdate('questions', temp);
+                          }}
+                        >
+                          +
+                        </button>
+                        <button
+                          disabled={question.options.length < 3}
+                          className={`${question.options.length < 3 && 'cursor-not-allowed'} btn bg-red-300`}
+                          onClick={() => {
+                            let tempQues = questions;
+                            let tempOpt = tempQues[index].options;
+                            tempOpt.splice(opIndex, 1);
+                            tempQues[index].options = tempOpt;
+                            handleUpdate('questions', tempQues);
+                          }}
+                        >
+                          -
+                        </button>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })
+        }
       </Form>
-      <div className="signup-page__footer">
-        Already have an account? Go to login page <span onClick={() => history.push('/login')}>here</span>
-      </div>
     </div>
   );
 }
 
-export default SignupPage;
+export default SurveyCreate;

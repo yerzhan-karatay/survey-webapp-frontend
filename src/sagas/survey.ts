@@ -18,7 +18,10 @@ export function* requestPostSurveyFull(
   try {
     yield call(surveyServices.postSurveyWithQnA, action.payload);
     yield put(fetchPostSurveyFullAction.success());
-    history.push("/survey/list");
+
+    const response = yield call(surveyServices.getSurveyListByUserIDinToken);
+    yield put(fetchGetSurveysAction.success(response as Survey[]));
+    history.push("/account/survey");
   } catch (e) {
     yield put(fetchPostSurveyFullAction.failure(e));
   }
@@ -30,7 +33,10 @@ export function* requestPostSurvey(
   try {
     yield call(surveyServices.postSurvey, action.payload);
     yield put(fetchPostSurveyAction.success());
-    history.push("/survey/list");
+
+    const response = yield call(surveyServices.getSurveyListByUserIDinToken);
+    yield put(fetchGetSurveysAction.success(response as Survey[]));
+    history.push("/account/survey");
   } catch (e) {
     yield put(fetchPostSurveyAction.failure(e));
   }

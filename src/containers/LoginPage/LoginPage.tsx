@@ -47,6 +47,7 @@ function LoginPage() {
           placeholder="email@email.com"
           type="email"
           name="email"
+          value={email}
         />
         <InputGroup
           label="Enter your password"
@@ -55,6 +56,7 @@ function LoginPage() {
           placeholder="Your password"
           type="password"
           name="password"
+          value={password}
         />
       </Form>
       <div className="login-page__footer">
