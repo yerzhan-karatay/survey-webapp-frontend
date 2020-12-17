@@ -87,6 +87,10 @@ export function* requestDeleteSurvey(
   try {
     const { surveyId } = action.payload;
     yield call(surveyServices.deleteSurvey, surveyId);
+    
+    const response = yield call(surveyServices.getSurveyListByUserIDinToken);
+    yield put(fetchGetSurveysAction.success(response as Survey[]));
+    
     yield put(fetchDeleteSurveyAction.success());
   } catch (e) {
     yield put(fetchDeleteSurveyAction.failure(e));

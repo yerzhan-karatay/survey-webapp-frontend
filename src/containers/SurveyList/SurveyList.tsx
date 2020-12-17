@@ -1,19 +1,24 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { State } from '../../reducers';
-import { fetchGetSurveysAction } from '../../actions';
+import { fetchGetSurveysAction, fetchDeleteSurveyAction } from '../../actions';
 import history from '../../history';
 
 const SurveyList: React.FC = () => {
   // TODO: show number of responses per survey - more detailed info
   const dispatch = useDispatch();
   const { list: surveys } = useSelector((state: State) => state.getSurveyList);
+  const { isFetching } = useSelector((state: State) => state.deleteSurvey);
 
   useEffect(() => {
     return () => {
       dispatch(fetchGetSurveysAction.request());
     };
   }, [dispatch]);
+
+  const deleteSurvey = (id: number) => {
+    dispatch(fetchDeleteSurveyAction.request({ surveyId: id }));
+  };
 
   return (
     <div className="survey-list">
@@ -32,6 +37,7 @@ const SurveyList: React.FC = () => {
             <tr>
               <th>Survey title</th>
               <th>Create date</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -43,6 +49,15 @@ const SurveyList: React.FC = () => {
                 >
                   <th>{survey.title}</th>
                   <th>{survey.created}</th>
+                  <th>
+                    <button
+                      className="btn btn--default bg-red-500"
+                      disabled={isFetching}
+                      onClick={() => deleteSurvey(survey.id)}
+                    >
+                      Delete
+                    </button>
+                  </th>
                 </tr>
               );
             })}

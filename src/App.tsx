@@ -18,8 +18,8 @@ const App: React.FC = () => {
           <Route exact={true} path="/:page" component={GeneralWrapper} />
           <Route exact={true} path="/account/:page" component={withAuth(AccountWrapper)} />
           <Route exact={true} path="/survey/:page" component={withAuth(SurveyWrapper)} />
-          <Route exact={true} path="/survey/:surveyId/:subPage" component={withAuth(SurveyWrapper)} />
-          <Route exact={true} path="/survey/:surveyId/:subPage/:responseId" component={withAuth(SurveyWrapper)} />
+          <Route exact={true} path="/survey/:surveyId/:page" component={withAuth(SurveyWrapper)} />
+          <Route exact={true} path="/survey/:surveyId/:page/:responseId" component={withAuth(SurveyWrapper)} />
           <Route component={WelcomePage} />
         </Switch>
       </Router>
