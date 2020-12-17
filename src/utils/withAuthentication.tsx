@@ -5,7 +5,8 @@ import history from "../history";
 function withAuth<T>(WrappedComponent: React.ComponentType<T>) {
   // TODO: add redirect to access forbidden 403 page
   return (props: T) => {
-    if (!localStorage.getItem(conf.TOKEN)) {
+    const token = localStorage.getItem(conf.TOKEN);
+    if (!token) {
       history.push("/login");
     }
 

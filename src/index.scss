@@ -1,0 +1,150 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import './src/containers/WelcomePage/WelcomePage.scss';
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-gray-100;
+}
+
+html,
+body,
+#root {
+  @apply w-full h-full;
+}
+
+#root {
+  @apply flex flex-col h-screen;
+}
+
+.btn {
+  @apply px-4 py-1 rounded;
+}
+
+// FOOTER
+.main-footer {
+  @apply p-6 flex bg-gray-800;
+
+  &__company {
+    @apply text-gray-100;
+  }
+
+  &__author {
+    @apply text-gray-200 ml-auto;
+  }
+}
+
+// WELCOME page
+.welcome-page {
+  @apply m-auto flex-grow text-center;
+
+  &__greeting {
+    @apply my-10 text-2xl font-bold;
+  }
+
+  &__navigation {
+    @apply;
+
+    &__btn {
+      @apply mr-5;
+
+      &--login {
+        @apply bg-green-200;
+      }
+
+      &--signup {
+        @apply bg-blue-200;
+      }
+
+      &--logout {
+        @apply bg-red-200;
+      }
+    }
+  }
+}
+
+// GENERAL wrapper
+.general-wrapper {
+  @apply m-auto flex-grow;
+
+  &__header {
+    @apply flex items-center py-5;
+    &__logo {
+      @apply w-10 cursor-pointer;
+    }
+
+    &__title {
+      @apply ml-5 text-2xl font-bold;
+    }
+  }
+
+  &__content {
+    @apply mt-10;
+  }
+}
+
+// LOGIN page
+
+.login-page {
+  &__greeting {
+    @apply text-base mb-10;
+  }
+
+  &__footer {
+    @apply my-10;
+
+    span {
+      @apply text-blue-600 font-bold cursor-pointer;
+    }
+  }
+}
+
+// SIGNUP page
+
+.signup-page {
+  &__greeting {
+    @apply text-base mb-10;
+  }
+
+  &__footer {
+    @apply my-10;
+
+    span {
+      @apply text-blue-600 font-bold cursor-pointer;
+    }
+  }
+}
+
+// FORM
+.common-form{
+  @apply block;
+
+  &__group {
+    @apply pb-5;
+    
+    &__label{
+      @apply block font-bold;
+      &--required::after {
+        @apply text-red-700;
+        content: '*';
+      }
+    }
+
+    &__input {
+      @apply block border rounded border-gray-300 px-2 py-1;
+    }
+  }
+
+  &__error {
+    @apply text-red-700 py-5;
+  }
+
+  &__submit {
+    @apply bg-green-200 border rounded border-green-700;
+  }
+}
