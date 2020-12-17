@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { State } from '../../reducers';
 import { fetchPostSignupAction, createPostSignupAction } from '../../actions';
-import Spin from '../../components/Spin';
+import { Form, InputGroup } from '../../components/Form';
 import history from '../../history';
 
 function SignupPage() {
@@ -20,7 +20,12 @@ function SignupPage() {
   }
 
   function handleSubmit() {
-    dispatch(fetchPostSignupAction.request({ email, full_name, password }));
+    // TODO: move verification process to saga
+    if (!email || !password || !full_name) {
+      handleUpdate('error', 'Please fill out all required fields');
+    } else {
+      dispatch(fetchPostSignupAction.request({ email, full_name, password }));
+    }
   }
 
   return (
@@ -28,51 +33,38 @@ function SignupPage() {
       <div className="signup-page__greeting">
         Thanks for joining us! Please enter your email and password below.
       </div>
-      <div className="signup-page__form common-form">
-        <div className="common-form__group">
-          <label className="common-form__group__label common-form__group__label--required">Email</label>
-          <input
-            required
-            className="signup-page__form__item common-form__group__input"
-            type="email"
-            name="email"
-            placeholder="email@email.com"
-            onChange={(e) => handleUpdate('email', e.target.value)}
-          />
-        </div>
-        <div className="common-form__group">
-          <label className="common-form__group__label common-form__group__label--required">Full name</label>
-          <input
-            required
-            className="signup-page__form__item common-form__group__input"
-            type="text"
-            name="full_name"
-            placeholder="Yerzhan Clark"
-            onChange={(e) => handleUpdate('full_name', e.target.value)}
-          />
-        </div>
-        <div className="common-form__group">
-          <label className="common-form__group__label common-form__group__label--required">Password</label>
-          <input
-            required
-            className="signup-page__form__item common-form__group__input"
-            type="password"
-            name="password"
-            placeholder="Your password"
-            onChange={(e) => handleUpdate('password', e.target.value)}
-          />
-        </div>
-        {!isFetching && error && (<div className="common-form__error">{error}</div>)}
-        <button
-          type="submit"
-          disabled={isFetching}
-          onClick={(e) => {
-            e.preventDefault();
-            handleSubmit();
-          }}className="common-form__submit btn">
-          {isFetching ? (<><Spin /> <span className="inline">Loading</span></>) : 'Signup'}
-        </button>
-      </div>
+      <Form
+        isFetching={isFetching}
+        errorMessage={error}
+        onSubmit={() => handleSubmit()}
+        submitLabel="Signup"
+        className="signup-page__form"
+      >
+        <InputGroup
+          label="Enter your email"
+          isRequired={true}
+          onChange={(val: string) => handleUpdate('email', val)}
+          placeholder="email@email.com"
+          type="email"
+          name="email"
+        />
+        <InputGroup
+          label="Enter your full name"
+          isRequired={true}
+          onChange={(val: string) => handleUpdate('full_name', val)}
+          placeholder="Yerzhan Clark"
+          type="text"
+          name="full_name"
+        />
+        <InputGroup
+          label="Enter your password"
+          isRequired={true}
+          onChange={(val: string) => handleUpdate('password', val)}
+          placeholder="Your password"
+          type="password"
+          name="password"
+        />
+      </Form>
       <div className="signup-page__footer">
         Already have an account? Go to login page <span onClick={() => history.push('/login')}>here</span>
       </div>

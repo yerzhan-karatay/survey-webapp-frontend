@@ -21,13 +21,22 @@ function WelcomePage() {
 
   const userBlock = (
     <>
-      <button className="welcome-page__navigation__btn btn" onClick={() => history.push('/account/my')}>
+      <button
+        className="welcome-page__navigation__btn btn btn--default"
+        onClick={() => history.push('/account/my')}
+      >
         My account
       </button>
-      <button className="welcome-page__navigation__btn btn" onClick={() => history.push('/account/survey')}>
+      <button
+        className="welcome-page__navigation__btn btn btn--default"
+        onClick={() => history.push('/account/survey')}
+      >
         My surveys
       </button>
-      <button className="welcome-page__navigation__btn btn" onClick={() => history.push('/account/response')}>
+      <button
+        className="welcome-page__navigation__btn btn btn--default"
+        onClick={() => history.push('/account/response')}
+      >
         My responses
       </button>
       <button

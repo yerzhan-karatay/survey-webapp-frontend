@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { State } from '../../reducers';
 import { fetchPostLoginAction, createPostLoginAction } from '../../actions';
-import Spin from '../../components/Spin';
+import { Form, InputGroup } from '../../components/Form';
 import history from '../../history';
 
 function LoginPage() {
@@ -20,7 +20,12 @@ function LoginPage() {
   }
 
   function handleSubmit() {
-    dispatch(fetchPostLoginAction.request({ email, password }));
+    // TODO: move verification process to saga
+    if (!email || !password) {
+      handleUpdate('error', 'Please fill out all required fields');
+    } else {
+      dispatch(fetchPostLoginAction.request({ email, password }));
+    }
   }
 
   return (
@@ -28,40 +33,30 @@ function LoginPage() {
       <div className="login-page__greeting">
         Welcome back! Please enter your email and password below.
       </div>
-      <div className="login-page__form common-form">
-        <div className="common-form__group">
-          <label className="common-form__group__label common-form__group__label--required">Email</label>
-          <input
-            required
-            className="login-page__form__item common-form__group__input"
-            type="email"
-            name="email"
-            placeholder="email@email.com"
-            onChange={(e) => handleUpdate('email', e.target.value)}
-          />
-        </div>
-        <div className="common-form__group">
-          <label className="common-form__group__label common-form__group__label--required">Password</label>
-          <input
-            required
-            className="login-page__form__item common-form__group__input"
-            type="password"
-            name="password"
-            placeholder="Your password"
-            onChange={(e) => handleUpdate('password', e.target.value)}
-          />
-        </div>
-        {!isFetching && error && (<div className="common-form__error">{error}</div>)}
-        <button
-          type="submit"
-          disabled={isFetching}
-          onClick={(e) => {
-            e.preventDefault();
-            handleSubmit();
-          }}className="common-form__submit btn">
-          {isFetching ? (<><Spin /> <span className="inline">Loading</span></>) : 'Login'}
-        </button>
-      </div>
+      <Form
+        isFetching={isFetching}
+        errorMessage={error}
+        onSubmit={() => handleSubmit()}
+        submitLabel="Login"
+        className="login-page__form"
+      >
+        <InputGroup
+          label="Enter your email"
+          isRequired={true}
+          onChange={(val: string) => handleUpdate('email', val)}
+          placeholder="email@email.com"
+          type="email"
+          name="email"
+        />
+        <InputGroup
+          label="Enter your password"
+          isRequired={true}
+          onChange={(val: string) => handleUpdate('password', val)}
+          placeholder="Your password"
+          type="password"
+          name="password"
+        />
+      </Form>
       <div className="login-page__footer">
         Don't have an account? Create an account <span onClick={() => history.push('/signup')}>here</span>
       </div>

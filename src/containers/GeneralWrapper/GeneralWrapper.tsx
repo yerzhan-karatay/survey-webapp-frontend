@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { RouteComponentProps } from 'react-router-dom';
 import './GeneralWrapper.css';
@@ -12,13 +11,9 @@ import history from '../../history';
 interface MatchParams {
   page: string;
 }
-
 interface GeneralWrapperProps extends RouteComponentProps<MatchParams> {
 }
 const GeneralWrapper: React.FC<GeneralWrapperProps> = ({ match }) => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-  }, [dispatch]);
   const page = match.params.page;
   let title = '';
   let content;
