@@ -85,3 +85,10 @@ export interface Token {
 export interface TitleRequest {
   title: string;
 }
+
+export interface RespondedSurveys {
+  surveyId: number;
+  responseId: number;
+  surveyTitle: string;
+  created: Date;
+}

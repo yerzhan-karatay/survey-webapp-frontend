@@ -5,7 +5,7 @@ import {
   fetchGetResponsedSurveysAction,
   fetchPostResponseAction,
 } from "../actions";
-import { ResponseAnswer, Survey, ReponseAnswerResponse } from "../models";
+import { ResponseAnswer, RespondedSurveys, ReponseAnswerResponse } from "../models";
 import * as responseServices from "../services/response";
 import history from "../history";
 
@@ -24,8 +24,8 @@ export function* requestPostResponse(
 
 export function* requestGetResponsedSurveys(): Generator {
   try {
-    const surveys = yield call(responseServices.getResponsedSurveysByUserID);
-    yield put(fetchGetResponsedSurveysAction.success(surveys as Survey[]));
+    const respSurveys = yield call(responseServices.getResponsedSurveysByUserID);
+    yield put(fetchGetResponsedSurveysAction.success(respSurveys as RespondedSurveys[]));
   } catch (e) {
     yield put(fetchGetResponsedSurveysAction.failure(e));
   }

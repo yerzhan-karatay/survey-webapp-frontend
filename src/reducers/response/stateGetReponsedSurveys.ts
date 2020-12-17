@@ -1,10 +1,10 @@
 import { getType, PayloadAction } from 'typesafe-actions';
 import { fetchGetResponsedSurveysAction } from '../../actions';
-import { Survey } from '../../models';
+import { RespondedSurveys } from '../../models';
 
 export interface GetResponsedSurveysState {
   isFetching: boolean;
-  list: Survey[];
+  list: RespondedSurveys[];
 }
 
 const initialState: GetResponsedSurveysState = {

@@ -24,11 +24,19 @@ body,
 
 .btn {
   @apply px-4 py-1 rounded;
+
+  &--default {
+    @apply border border-gray-200;
+  }
+
+  &--default:hover {
+    @apply bg-gray-300;
+  }
 }
 
 // FOOTER
 .main-footer {
-  @apply p-6 flex bg-gray-800;
+  @apply p-6 flex bg-gray-700;
 
   &__company {
     @apply text-gray-100;
@@ -89,7 +97,6 @@ body,
 }
 
 // LOGIN page
-
 .login-page {
   &__greeting {
     @apply text-base mb-10;
@@ -105,7 +112,6 @@ body,
 }
 
 // SIGNUP page
-
 .signup-page {
   &__greeting {
     @apply text-base mb-10;
@@ -145,6 +151,92 @@ body,
   }
 
   &__submit {
-    @apply bg-green-200 border rounded border-green-700;
+    @apply bg-green-200 border rounded border-green-700 flex items-center;
+  }
+}
+
+// GLOBAL HEADER
+.global-header {
+  @apply w-full bg-gray-700;
+  &__content {
+    @apply flex items-center h-20 p-6 flex m-auto text-gray-100;
+  
+    &__logo {
+      @apply flex items-center;
+  
+      img {
+        @apply h-10 cursor-pointer mr-5;
+      }
+    }
+  
+    &__child {
+      @apply flex items-center ml-20;
+    }
+  
+    &__user-block {
+      @apply flex items-center ml-auto;
+  
+      &__name {
+        @apply font-semibold;
+      }
+  
+      &__logout {
+        @apply bg-red-500 ml-5;
+      }
+    }
+  }
+}
+
+// ACCOUNT INFO
+.account-info {
+  @apply py-6;
+
+  &__item {
+    @apply font-normal pb-5;
+    span {
+      @apply font-semibold;
+    }
+  }
+}
+
+// ACCOUNT wrapper
+.account-wrapper {
+  @apply flex-grow w-full;
+  &__content {
+    @apply mt-10 m-auto;
+  }
+}
+
+// SURVEY list
+.survey-list {
+  &__header {
+    @apply flex items-center my-10;
+
+    button {
+      @apply ml-auto;
+    }
+  }
+
+  &__content {
+    @apply grid gap-4 grid-cols-1;
+
+    &__item {
+      @apply cursor-pointer;
+    }
+  }
+}
+
+// RESPONSE list
+.response-list {
+  &__header {
+    @apply my-10;
+  }
+
+  &__content {
+    @apply grid gap-4 grid-cols-1;
+
+    &__item {
+      @apply cursor-pointer;
+    }
   }
 }

@@ -8,6 +8,7 @@ import {
   FullSurveyWithQnA,
   ReponseAnswerRequest,
   ReponseAnswerResponse,
+  RespondedSurveys,
   Token,
   TitleRequest,
 } from "../models";
@@ -156,7 +157,7 @@ export const fetchGetResponsedSurveysAction = createAsyncAction(
   RESPONSED_SURVEY_GET[REQUEST],
   RESPONSED_SURVEY_GET[SUCCESS],
   RESPONSED_SURVEY_GET[FAILURE],
-)<undefined, Survey[], Error>();
+)<undefined, RespondedSurveys[], Error>();
 
 export const fetchPostResponseAction = createAsyncAction(
   RESPONSE_POST[REQUEST],
