@@ -11,7 +11,7 @@ export async function postSurvey(payload: TitleRequest) {
 }
 
 export async function getSurveyWithQnA(surveyId: number): Promise<FullSurveyWithQnA> {
-  const response = await axios.get(`${AppConfig.API_URL}/surveys/${surveyId}`);
+  const response = await axios.get(`${AppConfig.API_URL}/surveys/${surveyId}/full`);
   return response.data;
 }
 

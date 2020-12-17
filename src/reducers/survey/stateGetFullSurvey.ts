@@ -1,5 +1,5 @@
 import { getType, PayloadAction } from 'typesafe-actions';
-import { fetchGetSurveyFullAction } from '../../actions';
+import { fetchGetSurveyFullAction, actionSurveyFullAction } from '../../actions';
 import { FullSurveyWithQnA } from '../../models';
 
 export interface GetSurveyFullState extends FullSurveyWithQnA {
@@ -22,6 +22,11 @@ export function getSurveyFull(
   action: PayloadAction<string, any>,
 ) {
   switch (action.type) {
+    case getType(actionSurveyFullAction.clear):
+      return {
+        ...initialState,
+      };
+
     case getType(fetchGetSurveyFullAction.request):
       return {
         ...state,

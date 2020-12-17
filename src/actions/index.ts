@@ -100,6 +100,10 @@ export const fetchGetSurveyFullAction = createAsyncAction(
   SURVEY_FULL_GET[FAILURE],
 )<{ surveyId: number }, FullSurveyWithQnA, Error>();
 
+export const actionSurveyFullAction = {
+  clear: createAction('GET_FULL_SURVEY_CLEAR')(),
+};
+
 export const fetchGetSurveysAction = createAsyncAction(
   SURVEYS_GET[REQUEST],
   SURVEYS_GET[SUCCESS],
