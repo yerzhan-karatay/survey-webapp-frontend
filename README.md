@@ -7,10 +7,10 @@ This is part of Survey web application. To run the whole service, you need [**su
 I use `yarn` commands in this project, but you can do all commands using `npm` as well.
 
 ### 2. Set up local environment
-Clone [**survey-webapp-backend**](https://github.com/yerzhan-karatay/survey-webapp-backend) project to your local.
+Clone [**survey-webapp-frontend**](git@github.com:yerzhan-karatay/survey-webapp-frontend.git) project to your local.
 ```
-git clone git@github.com:yerzhan-karatay/survey-webapp-backend.git
-cd survey-webapp-backend
+git clone git@github.com:yerzhan-karatay/survey-webapp-frontend.git
+cd survey-webapp-frontend
 ```
 
 ### 3. Install all packages
