@@ -44,12 +44,18 @@ const SurveyList: React.FC = () => {
             {surveys.map(survey => {
               return (
                 <tr key={survey.id}>
-                  <th
+                  <td
                     className="cursor-pointer"
                     onClick={() => history.push(`/survey/${survey.id}/detail`)}
-                  >{survey.title}</th>
-                  <th>{survey.created}</th>
-                  <th>
+                  >{survey.title}</td>
+                  <td>{survey.created}</td>
+                  <td>
+                    <button
+                      className="btn btn--default bg-green-500"
+                      onClick={() => history.push(`/survey/${survey.id}/reply`)}
+                    >
+                      Go to reply
+                    </button>
                     <button
                       className="btn btn--default bg-blue-500"
                       onClick={() => history.push(`/survey/${survey.id}/edit`)}
@@ -63,12 +69,12 @@ const SurveyList: React.FC = () => {
                     >
                       Delete
                     </button>
-                  </th>
+                  </td>
                 </tr>
               );
             })}
             {surveys.length === 0 && (
-              <tr><th colSpan={2}>You do not have any created surveys</th></tr>
+              <tr><td colSpan={2}>You do not have any created surveys</td></tr>
             )}
           </tbody>
         </table>

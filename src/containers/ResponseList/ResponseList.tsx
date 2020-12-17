@@ -31,16 +31,16 @@ const ResponseList: React.FC = () => {
             {responses.map(response => {
               return (
                 <tr
-                  key={response.responseId}
-                  onClick={() => history.push(`/survey/${response.surveyId}/response/${response.responseId}`)}
+                  key={response.response_id}
+                  onClick={() => history.push(`/survey/${response.survey_id}/response/${response.response_id}`)}
                 >
-                  <th>{response.surveyTitle}</th>
-                  <th>{response.created}</th>
+                  <td>{response.survey_title}</td>
+                  <td>{response.created}</td>
                 </tr>
               );
             })}
             {responses.length === 0 && (
-              <tr><th colSpan={2}>You did not respond any surveys</th></tr>
+              <tr><td colSpan={2}>You did not respond any surveys</td></tr>
             )}
           </tbody>
         </table>

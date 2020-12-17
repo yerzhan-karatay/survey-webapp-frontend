@@ -16,7 +16,9 @@ export function* requestPostResponse(
     const { surveyId, responseAnsList } = action.payload;
     yield call(responseServices.postResponse, surveyId, responseAnsList);
     yield put(fetchPostResponseAction.success());
-    history.push("/response/list");
+    const respSurveys = yield call(responseServices.getResponsedSurveysByUserID);
+    yield put(fetchGetResponsedSurveysAction.success(respSurveys as RespondedSurveys[]));
+    history.push('/account/response');
   } catch (e) {
     yield put(fetchPostResponseAction.failure(e));
   }

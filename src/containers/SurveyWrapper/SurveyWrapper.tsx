@@ -35,7 +35,7 @@ const SurveyWrapper: React.FC<SurveyWrapperProps> = ({ match }) => {
       break;
     case 'reply':
       if (!surveyId) return <WelcomePage />;
-      content = <ResponseCreate />;
+      content = <ResponseCreate surveyId={parseInt(surveyId)} />;
       break;
     case 'response':
       if (!surveyId) return <WelcomePage />;

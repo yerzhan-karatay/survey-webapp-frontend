@@ -87,8 +87,8 @@ export interface TitleRequest {
 }
 
 export interface RespondedSurveys {
-  surveyId: number;
-  responseId: number;
-  surveyTitle: string;
+  survey_id: number;
+  response_id: number;
+  survey_title: string;
   created: Date;
 }
