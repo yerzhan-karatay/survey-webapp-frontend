@@ -116,7 +116,8 @@ function SurveyCreate() {
                         />
                         <button
                           className="btn bg-green-300"
-                          onClick={() => {
+                          onClick={(e) => {
+                            e.preventDefault();
                             let temp = questions;
                             temp[index].options.push('');
                             handleUpdate('questions', temp);
@@ -127,7 +128,8 @@ function SurveyCreate() {
                         <button
                           disabled={question.options.length < 3}
                           className={`${question.options.length < 3 && 'cursor-not-allowed'} btn bg-red-300`}
-                          onClick={() => {
+                          onClick={(e) => {
+                            e.preventDefault();
                             let tempQues = questions;
                             let tempOpt = tempQues[index].options;
                             tempOpt.splice(opIndex, 1);

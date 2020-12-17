@@ -36,21 +36,21 @@ const AccountWrapper: React.FC<AccountWrapperProps> = ({ match }) => {
         <button
           className="btn btn--default mr-5"
           disabled={page === 'my'}
-          onClick={() => history.push('/account/my')}
+          onClick={() => window.location = '/account/my' as unknown as Location}
         >
           My account
         </button>
         <button
           className="btn btn--default mr-5"
           disabled={page === 'survey'}
-          onClick={() => history.push('/account/survey')}
+          onClick={() => window.location = '/account/survey' as unknown as Location}
         >
           My surveys
         </button>
         <button
           className="btn btn--default"
           disabled={page === 'response'}
-          onClick={() => history.push('/account/response')}
+          onClick={() => window.location = '/account/response' as unknown as Location}
         >
           My responses
         </button>

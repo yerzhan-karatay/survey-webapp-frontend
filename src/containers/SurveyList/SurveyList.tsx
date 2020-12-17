@@ -46,19 +46,19 @@ const SurveyList: React.FC = () => {
                 <tr key={survey.id}>
                   <td
                     className="cursor-pointer"
-                    onClick={() => history.push(`/survey/${survey.id}/detail`)}
+                    onClick={() => window.location = `/survey/${survey.id}/detail` as unknown as Location}
                   >{survey.title}</td>
                   <td>{survey.created}</td>
                   <td>
                     <button
                       className="btn btn--default bg-green-500"
-                      onClick={() => history.push(`/survey/${survey.id}/reply`)}
+                      onClick={() => window.location = `/survey/${survey.id}/reply` as unknown as Location}
                     >
                       Go to reply
                     </button>
                     <button
                       className="btn btn--default bg-blue-500"
-                      onClick={() => history.push(`/survey/${survey.id}/edit`)}
+                      onClick={() => window.location = `/survey/${survey.id}/edit` as unknown as Location}
                     >
                       Edit
                     </button>

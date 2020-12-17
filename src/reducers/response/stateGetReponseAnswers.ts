@@ -1,10 +1,10 @@
 import { getType, PayloadAction } from 'typesafe-actions';
 import { fetchGetResponseAnswersAction } from '../../actions';
-import { ReponseAnswerResponse } from '../../models';
+import { ResponseAnswer } from '../../models';
 
 export interface GetReponseAnswersState {
   isFetching: boolean;
-  list: ReponseAnswerResponse[];
+  list: ResponseAnswer[];
 }
 
 const initialState: GetReponseAnswersState = {
