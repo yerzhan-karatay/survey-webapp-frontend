@@ -2,10 +2,15 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { RouteComponentProps } from 'react-router-dom';
-
+import './GeneralWrapper.css';
+import WelcomePage from '../WelcomePage';
+import LoginPage from '../LoginPage';
+import SignupPage from '../SignupPage';
+import logo from '../../assets/surveyor.svg';
+import { Logout } from '../../utils';
+import history from '../../history';
 interface MatchParams {
-  page_type: string;
-  page_function: string;
+  page: string;
 }
 
 interface GeneralWrapperProps extends RouteComponentProps<MatchParams> {
@@ -14,24 +19,34 @@ const GeneralWrapper: React.FC<GeneralWrapperProps> = ({ match }) => {
   const dispatch = useDispatch();
   useEffect(() => {
   }, [dispatch]);
-  // login, signup, logout
-  const page_type = match.params.page_type;
+  const page = match.params.page;
+  let title = '';
   let content;
-  switch (page_type) {
-    case 'users':
-      content = <div>content</div>;
+  switch (page) {
+    case 'login':
+      content = <LoginPage />;
+      title = 'Authorization';
+      break;
+    case 'signup':
+      content = <SignupPage />;
+      title = 'Registration';
+      break;
+    case 'logout':
+      Logout();
       break;
     default:
-      content = 'page';
-      break;
+      return <WelcomePage />;
   }
 
   return (
-    <main className="wrapper">
-      <section className="wrapper__header">
-        GeneralWrapper header
+    <main className="general-wrapper container">
+      <section className="general-wrapper__header">
+        <img onClick={() => history.push('/')} alt="Survey" src={logo} className="general-wrapper__header__logo" />
+        <div className="general-wrapper__header__title">
+          Survey world - {title}
+        </div>
       </section>
-      <section className="wrapper__content">{content}</section>
+      <section className="general-wrapper__content">{content}</section>
     </main>
   );
 };

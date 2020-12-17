@@ -1,0 +1,19 @@
+.general-wrapper {
+  @apply container mx-auto;
+
+  &__header {
+    @apply grid grid-cols-2 grid-cols-1;
+
+    &__logo {
+      @apply w-32;
+    }
+
+    &__title {
+      @apply text-gray-700 text-base;
+    }
+  }
+
+  &__content {
+    @apply p-5;
+  }
+}
